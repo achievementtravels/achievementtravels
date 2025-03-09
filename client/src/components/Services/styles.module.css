@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap");
+
+.card {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  background: #f8f3e8;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card h2 {
+  margin-top: 1rem;
+  font-family: "Kalam", cursive;
+  font-weight: normal;
+  font-size: 2rem;
+  color: #4a4a7d;
+  text-align: center;
+}
+
+.card p {
+  font-family: "Kalam", cursive;
+  font-size: 1rem;
+  color: #5e5e89;
+  text-align: center;
+}
+
+/* Filter Menu Sidebar Styles */
+.bars {
+  z-index: 1000; /* Increased to ensure it overlays other content */
+  position: fixed;
+  top: 50%;
+  left: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%; /* Using 50% creates a perfect circle */
+  color: white;
+  background-color: rgb(56, 60, 220);
+  cursor: pointer;
+  font-size: 18px;
+  transition:
+    transform 0.7s ease,
+    background-color 0.3s ease;
+}
+
+.bars:hover {
+  background-color: rgb(55, 48, 163);
+}
+
+/* Backdrop Style */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Blackish, semi-transparent */
+  z-index: 1;
+}
+.filterMenu {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Responsive (Mobile) Styles */
+@media screen and (max-width: 768px) {
+  .filterMenu {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 0; /* Hidden by default */
+    height: 100vh;
+    transition:
+      width 0.4s ease-in-out,
+      padding 0.4s ease-in-out;
+    padding: 0;
+    overflow-y: auto;
+  }
+
+  /* When active, expand the filter menu */
+  .activeFilterMenu {
+    width: calc(100vw - 80px);
+    padding: 20px;
+  }
+
+  /* Move the bars icon when active */
+  .activeBars {
+    left: auto;
+    transform: translateX(calc(100vw - 75px));
+  }
+}

@@ -1,0 +1,167 @@
+.Nav_wrapper {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+
+.Nav_wrapper ul li {
+  display: inline-block;
+}
+
+.Nav_wrapper ul li a {
+  font-size: 16px;
+  font-weight: 500;
+  /* color: white; */
+  position: relative; /* Needed for pseudo-element */
+  transition: color 0.5s ease-in-out;
+  text-decoration: none; /* Remove default underline */
+}
+
+.Nav_wrapper ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust underline position */
+  width: 0%; /* Start hidden */
+  height: 2px;
+  background-color: #6366f1;
+  transition: width 0.5s ease-in-out;
+  text-decoration-style: wavy;
+}
+
+.Nav_wrapper ul li a:hover {
+  color: #6366f1;
+}
+
+.Nav_wrapper ul li a:hover::after {
+  width: 100%; /* Expand underline from left to right */
+}
+
+.nav_btns {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav_btns .CallBtn i {
+  font-size: 20px;
+}
+
+#bars {
+  padding: 15px;
+  font-size: 18px;
+  color: #1e1e1e;
+  background-color: #6366f1;
+  cursor: pointer;
+  transition: 0.6s;
+  display: none;
+}
+
+#bars:hover,
+#bars:focus,
+#bars:active {
+  background-color: rgb(100, 100, 100);
+  color: #fff;
+}
+
+@media screen and (min-width: 1500px) {
+  .Nav_wrapper ul li {
+    margin: 0px 40px;
+  }
+  .Nav_wrapper ul li a {
+    font-size: 14px;
+    letter-spacing: 3px;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .Nav_wrapper ul li {
+    margin: 0px 15px;
+  }
+  .Nav_wrapper ul li a {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .Nav_wrapper {
+    padding: 0 20px;
+  }
+  .Nav_wrapper ul li {
+    margin: 0px 10px;
+  }
+  .Nav_wrapper ul li a {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Nav_wrapper {
+    padding: 5%;
+    z-index: 1001;
+  }
+  #bars {
+    display: block;
+    z-index: 1;
+  }
+
+  .Nav_wrapper ul {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    /* margin-top: 80px; */
+    background-color: white;
+    color: gray;
+    transition: 1.2s;
+
+    width: 0%;
+    height: 100vh;
+    border: none;
+    overflow: hidden;
+  }
+
+  .Nav_wrapper ul li {
+    display: block;
+    /* margin: 26px 0; */
+    padding: 26px 0;
+    padding-left: 8% !important;
+    border-bottom: 1px solid gray;
+  }
+  .Nav_wrapper ul li a {
+    max-width: fit-content;
+
+    font-size: 16px;
+    /* font-weight: bold; */
+  }
+  .dropdown {
+    display: block;
+    padding: 0;
+  }
+
+  .Nav_wrapper .activeMenu {
+    border-width: 1px;
+    width: 100%;
+  }
+}
+
+/* .dropdown_menu_10 {
+  animation: growOut 300ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+@keyframes growOut {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+} */
