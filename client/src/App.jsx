@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./ScrollToTop";
-import Testpage from "./Testpage/Testpage";
 import FloatingButtons from "./components/UIComponents/FloatingButtons";
 
 const Home = lazy(() => import("./components/Home/Home"));
@@ -28,7 +27,6 @@ function App() {
           <Route path="/services/:type" element={<ServicesPage />} />
           <Route path="/services/:type/:dataId" element={<DetailPage />} />
           <Route path="/forms/:type" element={<FormPage />} />
-          <Route path="/testpage" element={<Testpage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

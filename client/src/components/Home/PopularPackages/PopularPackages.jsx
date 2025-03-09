@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
-// import packages from "../../../../public/assets/GlobalData";
 import { useNavigate } from "react-router-dom";
 import ErrorPage from "../../../ErrorPage";
-import LoadingPage from "../../../LoadingPage";
+import LoadingPage, { Loader } from "../../../LoadingPage";
 import api from "../../../api";
 
 const PopularPackages = () => {
@@ -105,81 +104,95 @@ const PopularPackages = () => {
 
   return (
     <div className={`fontMont text-[12px] lazyLoadLeft`}>
-      <div ref={carouselRef} className={`${styles.carousel}`}>
-        {/* slider list */}
-        <div ref={sliderRef} className={`${styles.list}`}>
-          {packages.map((item) => (
-            <div className={`${styles.item}`} key={item._id}>
-              <picture>
-                <source srcSet={item.images[0].avif} type="image/avif" />
-                <source srcSet={item.images[0].webp} type="image/webp" />
-                <img src={item.images[0].jpg} alt={item.title} loading="lazy" />
-              </picture>
-              <div className="absolute inset-0 bg-black opacity-30"></div>
+      {packages.length > 0 ? (
+        <div ref={carouselRef} className={`${styles.carousel}`}>
+          {/* slider list */}
+          <div ref={sliderRef} className={`${styles.list}`}>
+            {packages.map((item) => (
+              <div className={`${styles.item}`} key={item._id}>
+                <picture>
+                  <source srcSet={item.images[0].avif} type="image/avif" />
+                  <source srcSet={item.images[0].webp} type="image/webp" />
+                  <img
+                    src={item.images[0].jpg}
+                    alt={item.title}
+                    loading="lazy"
+                  />
+                </picture>
+                <div className="absolute inset-0 bg-black opacity-30"></div>
 
+                <div
+                  className={`${styles.content} flex flex-col md:gap-2 pr-[30%] md:pl-10 lg:pl-28`}
+                >
+                  <div className={`${styles.author} uppercase`}>
+                    {item.location.length > 1
+                      ? "Multi-Location"
+                      : item.location[0]}
+                  </div>
+                  <div className={`${styles.title} uppercase md:text-5xl`}>
+                    {item.title}
+                  </div>
+                  <div className={`${styles.des} line-clamp-6`}>
+                    {item.desc}
+                  </div>
+                  <div className={`${styles.buttons}`}>
+                    <button
+                      onClick={() => handleNavigate(item._id)}
+                      className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
+                    >
+                      View Details
+                    </button>
+                    <button
+                      onClick={() => handleNavigate("all")}
+                      className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
+                    >
+                      All Packages
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* thumbnail list */}
+          <div ref={thumbnailRef} className={`${styles.thumbnail}`}>
+            {packages.map((item) => (
               <div
-                className={`${styles.content} flex flex-col md:gap-2 pr-[30%] md:pl-10 lg:pl-28`}
+                onClick={() => handleNavigate(item._id)}
+                className={`${styles.item} cursor-pointer`}
+                key={item._id}
               >
-                <div className={`${styles.author} uppercase`}>
-                  {item.location.length > 1
-                    ? "Multi-Location"
-                    : item.location[0]}
-                </div>
-                <div className={`${styles.title} uppercase md:text-5xl`}>
-                  {item.title}
-                </div>
-                <div className={`${styles.des} line-clamp-6`}>{item.desc}</div>
-                <div className={`${styles.buttons}`}>
-                  <button
-                    onClick={() => handleNavigate(item._id)}
-                    className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
-                  >
-                    View Details
-                  </button>
-                  <button
-                    onClick={() => handleNavigate("all")}
-                    className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
-                  >
-                    All Packages
-                  </button>
+                <picture>
+                  <source srcSet={item.images[0].avif} type="image/avif" />
+                  <source srcSet={item.images[0].webp} type="image/webp" />
+                  <img
+                    src={item.images[0].jpg}
+                    alt={item.title}
+                    loading="lazy"
+                  />
+                </picture>{" "}
+                <div className={`${styles.content}`}>
+                  <div className={`${styles.title}`}>{item.title}</div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          {/* arrows */}
+          <div
+            className={`${styles.arrows} gap-1 sm:gap-5 lg:gap-12 left-[10%] sm:left-[15%]`}
+          >
+            <button ref={prevButtonRef} className="h-10 w-10 md:h-14 md:w-14">
+              <i className="ri-arrow-left-wide-line text-lg md:text-xl"></i>
+            </button>
+            <button ref={nextButtonRef} className="h-10 w-10 md:h-14 md:w-14">
+              <i className="ri-arrow-right-wide-line text-lg md:text-xl"></i>
+            </button>
+          </div>
+          {/* running time indicator */}
+          <div className={`${styles.time}`}></div>
         </div>
-        {/* thumbnail list */}
-        <div ref={thumbnailRef} className={`${styles.thumbnail}`}>
-          {packages.map((item) => (
-            <div
-              onClick={() => handleNavigate(item._id)}
-              className={`${styles.item} cursor-pointer`}
-              key={item._id}
-            >
-              <picture>
-                <source srcSet={item.images[0].avif} type="image/avif" />
-                <source srcSet={item.images[0].webp} type="image/webp" />
-                <img src={item.images[0].jpg} alt={item.title} loading="lazy" />
-              </picture>{" "}
-              <div className={`${styles.content}`}>
-                <div className={`${styles.title}`}>{item.title}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        {/* arrows */}
-        <div
-          className={`${styles.arrows} gap-1 sm:gap-5 lg:gap-12 left-[10%] sm:left-[15%]`}
-        >
-          <button ref={prevButtonRef} className="h-10 w-10 md:h-14 md:w-14">
-            <i className="ri-arrow-left-wide-line text-lg md:text-xl"></i>
-          </button>
-          <button ref={nextButtonRef} className="h-10 w-10 md:h-14 md:w-14">
-            <i className="ri-arrow-right-wide-line text-lg md:text-xl"></i>
-          </button>
-        </div>
-        {/* running time indicator */}
-        <div className={`${styles.time}`}></div>
-      </div>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import styles from "./style.module.css";
-// import { boats } from "../../../../public/assets/GlobalData";
 import { useNavigate } from "react-router-dom";
 import ErrorPage from "../../../ErrorPage";
-import LoadingPage from "../../../LoadingPage";
+import LoadingPage, { Loader } from "../../../LoadingPage";
 
 import api from "../../../api";
 
@@ -94,54 +93,60 @@ const Boats = () => {
       className={`${styles.carousel} xl:py-20 lazyLoadLeft`}
     >
       <div ref={listRef} className={styles.list}>
-        {boats.map((boat) => (
-          <div className={`${styles.sliderItem} `} key={boat._id}>
-            <picture>
-              <source srcSet={boat.images[0].avif} type="image/avif" />
-              <source srcSet={boat.images[0].webp} type="image/webp" />
-              <img
-                src={boat.images[0].jpg}
-                alt={boat.title}
-                loading="lazy"
-                className="w-1/2 absolute right-0 top-[55%] sm:top-[60%] rounded-[15px] transform -translate-y-[55%] sm:-translate-y-[60%] transition-[right] duration-[1500ms]"
-              />
-            </picture>
-            <div className={`${styles.introduce} flex flex-col gap-2 sm:gap-5`}>
+        {boats.length > 0 ? (
+          boats.map((boat) => (
+            <div className={`${styles.sliderItem} `} key={boat._id}>
+              <picture>
+                <source srcSet={boat.images[0].avif} type="image/avif" />
+                <source srcSet={boat.images[0].webp} type="image/webp" />
+                <img
+                  src={boat.images[0].jpg}
+                  alt={boat.title}
+                  loading="lazy"
+                  className="w-1/2 absolute right-0 top-[55%] sm:top-[60%] rounded-[15px] transform -translate-y-[55%] sm:-translate-y-[60%] transition-[right] duration-[1500ms]"
+                />
+              </picture>
               <div
-                className={`${styles.title} font-montserrat uppercase text-xs sm:text-sm font-medium`}
+                className={`${styles.introduce} flex flex-col gap-2 sm:gap-5`}
               >
-                {boat.location}
-              </div>
-              <div
-                className={`${styles.topic} font-montserrat leading-tight uppercase text-2xl sm:text-3xl font-semibold`}
-              >
-                {boat.title}
-              </div>
-              <div
-                className={`${styles.des} text-gray-700 text-xs sm:text-sm leading-[16px] mt-5 line-clamp-6 md:w-[280px] overflow-hidden`}
-              >
-                {boat.desc}
-              </div>
+                <div
+                  className={`${styles.title} font-montserrat uppercase text-xs sm:text-sm font-medium`}
+                >
+                  {boat.location}
+                </div>
+                <div
+                  className={`${styles.topic} font-montserrat leading-tight uppercase text-2xl sm:text-3xl font-semibold`}
+                >
+                  {boat.title}
+                </div>
+                <div
+                  className={`${styles.des} text-gray-700 text-xs sm:text-sm leading-[16px] mt-5 line-clamp-6 md:w-[280px] overflow-hidden`}
+                >
+                  {boat.desc}
+                </div>
 
-              <div
-                className={`flex flex-col items-center mt-5 sm:flex-row sm:gap-5`}
-              >
-                <button
-                  className={`${styles.seeMore} w-max mt-[20px] p-[5px] text-xs sm:text-sm uppercase font-bold tracking-[2px]`}
-                  onClick={() => handleNavigate(boat._id)}
+                <div
+                  className={`flex flex-col items-center mt-5 sm:flex-row sm:gap-5`}
                 >
-                  VIEW DETAILS
-                </button>
-                <button
-                  className={`${styles.seeMore} w-max mt-[20px] p-[5px] text-xs sm:text-sm uppercase font-bold tracking-[2px]`}
-                  onClick={() => handleNavigate("all")}
-                >
-                  SEE ALL
-                </button>
+                  <button
+                    className={`${styles.seeMore} w-max mt-[20px] p-[5px] text-xs sm:text-sm uppercase font-bold tracking-[2px]`}
+                    onClick={() => handleNavigate(boat._id)}
+                  >
+                    VIEW DETAILS
+                  </button>
+                  <button
+                    className={`${styles.seeMore} w-max mt-[20px] p-[5px] text-xs sm:text-sm uppercase font-bold tracking-[2px]`}
+                    onClick={() => handleNavigate("all")}
+                  >
+                    SEE ALL
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <Loader />
+        )}
       </div>
 
       {/* Navigation arrows */}

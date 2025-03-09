@@ -1,9 +1,7 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import packagesData from "../../../public/assets/GlobalData";
 
 export const Timeline = ({ data }) => {
-  data = packagesData[0].timelineData;
   const ref = useRef(null);
   const containerRef = useRef(null);
   const [height, setHeight] = useState(0);

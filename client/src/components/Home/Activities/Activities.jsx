@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import ErrorPage from "../../../ErrorPage";
-import LoadingPage from "../../../LoadingPage";
+import LoadingPage, { Loader } from "../../../LoadingPage";
 import api from "../../../api";
 
 const Activities = () => {
@@ -103,82 +103,86 @@ const Activities = () => {
   if (loading) return <LoadingPage />;
   return (
     <div className={`${styles.font_poppins} text-[12px] lazyLoadLeft`}>
-      <div ref={carouselRef} className={`${styles.carousel}`}>
-        {/* slider list */}
-        <div ref={sliderRef} className={`${styles.list}`}>
-          {activities.map((activity) => (
-            <div className={`${styles.item}`} key={activity._id}>
-              <picture key={activity._id}>
-                <source srcSet={activity.images[0].avif} type="image/avif" />
-                <source srcSet={activity.images[0].webp} type="image/webp" />
-                <img
-                  src={activity.images[0].jpg}
-                  alt={activity.title}
-                  loading="lazy"
-                />
-              </picture>
-              <div className="absolute inset-0 bg-black opacity-30"></div>
-              <div className={`${styles.content}`}>
-                <div className={`${styles.author} uppercase mb-2`}>
-                  {activity.location}
-                </div>
-                <div className={`${styles.title} uppercase mb-5`}>
-                  {activity.title}
-                </div>
-                <div className={`${styles.des} line-clamp-6 mb-10`}>
-                  {activity.desc}
-                </div>
-                <div className={`${styles.buttons}`}>
-                  <button
-                    onClick={() => handleNavigate(activity._id)}
-                    className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
-                  >
-                    View Details
-                  </button>
-                  <button
-                    onClick={() => handleNavigate("all")}
-                    className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
-                  >
-                    All Packages
-                  </button>
+      {activities.length > 0 ? (
+        <div ref={carouselRef} className={`${styles.carousel}`}>
+          {/* slider list */}
+          <div ref={sliderRef} className={`${styles.list}`}>
+            {activities.map((activity) => (
+              <div className={`${styles.item}`} key={activity._id}>
+                <picture key={activity._id}>
+                  <source srcSet={activity.images[0].avif} type="image/avif" />
+                  <source srcSet={activity.images[0].webp} type="image/webp" />
+                  <img
+                    src={activity.images[0].jpg}
+                    alt={activity.title}
+                    loading="lazy"
+                  />
+                </picture>
+                <div className="absolute inset-0 bg-black opacity-30"></div>
+                <div className={`${styles.content}`}>
+                  <div className={`${styles.author} uppercase mb-2`}>
+                    {activity.location}
+                  </div>
+                  <div className={`${styles.title} uppercase mb-5`}>
+                    {activity.title}
+                  </div>
+                  <div className={`${styles.des} line-clamp-6 mb-10`}>
+                    {activity.desc}
+                  </div>
+                  <div className={`${styles.buttons}`}>
+                    <button
+                      onClick={() => handleNavigate(activity._id)}
+                      className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
+                    >
+                      View Details
+                    </button>
+                    <button
+                      onClick={() => handleNavigate("all")}
+                      className="px-2 py-1 md:px-4 md:py-2 font-semibold uppercase text-xs max-w-[150px]"
+                    >
+                      All Packages
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-        {/* thumbnail list */}
-        <div ref={thumbnailRef} className={`${styles.thumbnail}`}>
-          {activities.map((activity) => (
-            <div className={`${styles.item}`} key={activity._id}>
-              <picture key={activity._id}>
-                <source srcSet={activity.images[0].avif} type="image/avif" />
-                <source srcSet={activity.images[0].webp} type="image/webp" />
-                <img
-                  src={activity.images[0].jpg}
-                  alt={activity.title}
-                  loading="lazy"
-                />
-              </picture>
-              <div className={`${styles.content}`}>
-                <div className={`${styles.title}`}>{activity.title}</div>
+            ))}
+          </div>
+          {/* thumbnail list */}
+          <div ref={thumbnailRef} className={`${styles.thumbnail}`}>
+            {activities.map((activity) => (
+              <div className={`${styles.item}`} key={activity._id}>
+                <picture key={activity._id}>
+                  <source srcSet={activity.images[0].avif} type="image/avif" />
+                  <source srcSet={activity.images[0].webp} type="image/webp" />
+                  <img
+                    src={activity.images[0].jpg}
+                    alt={activity.title}
+                    loading="lazy"
+                  />
+                </picture>
+                <div className={`${styles.content}`}>
+                  <div className={`${styles.title}`}>{activity.title}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          {/* arrows */}
+          <div
+            className={`${styles.arrows} gap-1 sm:gap-5 lg:gap-12 left-[10%] sm:left-[15%]`}
+          >
+            <button ref={prevButtonRef} className="h-10 w-10 md:h-14 md:w-14">
+              <i className="ri-arrow-left-wide-line text-lg md:text-xl"></i>
+            </button>
+            <button ref={nextButtonRef} className="h-10 w-10 md:h-14 md:w-14">
+              <i className="ri-arrow-right-wide-line text-lg md:text-xl"></i>
+            </button>
+          </div>
+          {/* running time indicator */}
+          <div className={`${styles.time}`}></div>
         </div>
-        {/* arrows */}
-        <div
-          className={`${styles.arrows} gap-1 sm:gap-5 lg:gap-12 left-[10%] sm:left-[15%]`}
-        >
-          <button ref={prevButtonRef} className="h-10 w-10 md:h-14 md:w-14">
-            <i className="ri-arrow-left-wide-line text-lg md:text-xl"></i>
-          </button>
-          <button ref={nextButtonRef} className="h-10 w-10 md:h-14 md:w-14">
-            <i className="ri-arrow-right-wide-line text-lg md:text-xl"></i>
-          </button>
-        </div>
-        {/* running time indicator */}
-        <div className={`${styles.time}`}></div>
-      </div>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

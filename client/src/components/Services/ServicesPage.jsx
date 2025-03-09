@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import Services from "./Services";
-// import packagesData, { activitiesData, hotelsData, carsData, boatsData } from "../../../public/assets/GlobalData";
 import ErrorPage from "../../ErrorPage";
 import LoadingPage from "../../LoadingPage";
 import api from "../../api";

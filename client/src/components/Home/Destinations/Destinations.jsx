@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import ErrorPage from "../../../ErrorPage";
-import LoadingPage from "../../../LoadingPage";
+import LoadingPage, { Loader } from "../../../LoadingPage";
 
 import { useEffect, useState } from "react";
 import api from "../../../api";
@@ -79,46 +79,56 @@ function Destinations() {
           },
         }}
       >
-        {packagesData.map((item) => {
-          return (
-            <SwiperSlide key={item._id}>
-              <CardContainer requestFrom="destinations">
-                <CardBody
-                  className={`${styles.slide} p-2 m-2 bg-white overflow-hidden cursor-pointer`}
-                  onClick={() => handleNavigate(item)}
-                  requestFrom="destinations"
-                >
-                  <CardItem
-                    translateZ={10}
-                    rotateX={10}
-                    rotateZ={-2}
-                    className="w-full mt-4"
+        {packagesData.length > 0 ? (
+          packagesData.map((item) => {
+            return (
+              <SwiperSlide key={item._id}>
+                <CardContainer requestFrom="destinations">
+                  <CardBody
+                    className={`${styles.slide} p-2 m-2 bg-white overflow-hidden cursor-pointer`}
+                    onClick={() => handleNavigate(item)}
+                    requestFrom="destinations"
                   >
-                    <picture>
-                      <source srcSet={item.images[0].avif} type="image/avif" />
-                      <source srcSet={item.images[0].webp} type="image/webp" />
-                      <img
-                        src={item.images[0].jpg}
-                        alt={item.title}
-                        loading="lazy"
-                        className={`w-full h-full rounded-[12px]`}
-                      />
-                    </picture>
-                  </CardItem>
-                  <CardItem
-                    translateZ={10}
-                    translateX={5}
-                    className="text-xl font-bold text-neutral-600 dark:text-white"
-                  >
-                    <span className="text-xs uppercase font-semibold text-gray-700 tracking-[1px]">
-                      {item.location}
-                    </span>
-                  </CardItem>
-                </CardBody>
-              </CardContainer>
-            </SwiperSlide>
-          );
-        })}
+                    <CardItem
+                      translateZ={10}
+                      rotateX={10}
+                      rotateZ={-2}
+                      className="w-full mt-4"
+                    >
+                      <picture>
+                        <source
+                          srcSet={item.images[0].avif}
+                          type="image/avif"
+                        />
+                        <source
+                          srcSet={item.images[0].webp}
+                          type="image/webp"
+                        />
+                        <img
+                          src={item.images[0].jpg}
+                          alt={item.title}
+                          loading="lazy"
+                          className={`w-full h-full rounded-[12px]`}
+                        />
+                      </picture>
+                    </CardItem>
+                    <CardItem
+                      translateZ={10}
+                      translateX={5}
+                      className="text-xl font-bold text-neutral-600 dark:text-white"
+                    >
+                      <span className="text-xs uppercase font-semibold text-gray-700 tracking-[1px]">
+                        {item.location}
+                      </span>
+                    </CardItem>
+                  </CardBody>
+                </CardContainer>
+              </SwiperSlide>
+            );
+          })
+        ) : (
+          <Loader />
+        )}
       </Swiper>
     </div>
   );

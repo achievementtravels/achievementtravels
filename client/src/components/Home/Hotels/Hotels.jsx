@@ -9,7 +9,7 @@ import { RightSwiperArrow } from "../../UIComponents/UIComponents.jsx";
 
 import { useEffect, useState } from "react";
 import ErrorPage from "../../../ErrorPage.jsx";
-import LoadingPage from "../../../LoadingPage";
+import LoadingPage, { Loader } from "../../../LoadingPage";
 
 import api from "../../../api.js";
 
@@ -54,38 +54,36 @@ const Hotels = () => {
           </div>
         </div>
       </div>
-
-      <Swiper
-        modules={[Navigation]}
-        spaceBetween={20}
-        slidesPerView={1}
-        loop={true}
-        breakpoints={{
-          768: { slidesPerView: 1 },
-          1024: { slidesPerView: 2 },
-          1280: { slidesPerView: 2 },
-        }}
-        // navigation
-        className="relative px-4 sm:px-6 lg:px-8 w-full sm:w-[80%] md:w-[60%] lg:w-[60%]"
-        navigation={{
-          nextEl: ".custom-next",
-          prevEl: ".custom-prev",
-        }}
-      >
-        {hotels.length > 0 ? (
-          hotels.map((hotel, index) =>
-            hotel.category == "Premium" ? (
-              <SwiperSlide key={hotel.title || index}>
-                <HotelCard hotel={hotel} />
-              </SwiperSlide>
-            ) : (
-              ""
-            )
-          )
-        ) : (
-          <p>Loading Hotels...</p>
-        )}
-      </Swiper>
+      {hotels.length > 0 ? (
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={20}
+          slidesPerView={1}
+          loop={true}
+          breakpoints={{
+            768: { slidesPerView: 1 },
+            1024: { slidesPerView: 2 },
+            1280: { slidesPerView: 2 },
+          }}
+          // navigation
+          className="relative px-4 sm:px-6 lg:px-8 w-full sm:w-[80%] md:w-[60%] lg:w-[60%]"
+          navigation={{
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
+          }}
+        >
+          {hotels.map(
+            (hotel, index) =>
+              hotel.category == "Premium" && (
+                <SwiperSlide key={hotel.title || index}>
+                  <HotelCard hotel={hotel} />
+                </SwiperSlide>
+              )
+          )}
+        </Swiper>
+      ) : (
+        <Loader />
+      )}
       <LeftSwiperArrow requestFrom="popular-hotels" />
       <RightSwiperArrow requestFrom="popular-hotels" />
     </section>

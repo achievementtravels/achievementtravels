@@ -2,14 +2,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-// import { testimonialsData } from "../../../../public/assets/GlobalData";
-
 import { useEffect, useState } from "react";
 import { LeftSwiperArrow } from "./../../UIComponents/UIComponents";
 import { RightSwiperArrow } from "./../../UIComponents/UIComponents";
 import { useLocation } from "react-router-dom";
 import ErrorPage from "../../../ErrorPage";
-import LoadingPage from "../../../LoadingPage";
+import LoadingPage, { Loader } from "../../../LoadingPage";
 
 import api from "../../../api";
 
@@ -86,7 +84,7 @@ const Testimonials = () => {
             </SwiperSlide>
           ))
         ) : (
-          <p>Loading Testimonials...</p>
+          <Loader />
         )}
       </Swiper>
       <LeftSwiperArrow requestFrom="testimonials" />
