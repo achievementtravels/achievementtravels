@@ -3,6 +3,7 @@ services:
     plan: free
     name: achievementtravels
     runtime: node
+    rootDir: server
     repo: https://github.com/achievementtravels/achievementtravels.git
     branch: main
     buildCommand: npm install
