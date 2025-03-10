@@ -36,6 +36,7 @@ connect(process.env.MONGO_URI)
 
 // Routes
 app.get("/", (req, res) => {
+  console.log(process.env.MONGO_URI);
   res.json({ message: "API is working!" }); // Return a JSON response
 });
 
