@@ -93,7 +93,7 @@ function Destinations() {
                       translateZ={10}
                       rotateX={10}
                       rotateZ={-2}
-                      className="w-full mt-4"
+                      className="w-full aspect-[3/2] mt-4"
                     >
                       <picture>
                         <source
