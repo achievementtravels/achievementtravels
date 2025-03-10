@@ -150,7 +150,11 @@ const FormPage = ({ isOpen, requestFrom }) => {
     if (!isOpen?.inquire && !formData.date.year) {
       newErrors.year = "* Year is required";
     }
-    if (!isOpen?.inquire && !formData.date.nights) {
+    if (
+      !isOpen?.inquire &&
+      (requestFrom === "hotel" || requestFrom === "boat" || generalInquiry) &&
+      !formData.date.nights
+    ) {
       newErrors.nights = "* Number of nights is required";
     }
     if (!formData.party.adults) {
@@ -200,7 +204,6 @@ const FormPage = ({ isOpen, requestFrom }) => {
             : "General Inquiry",
         });
 
-        console.log("Form submitted successfully");
         setToastType("success");
       } catch (error) {
         console.error(

@@ -7,10 +7,12 @@ import Toast from "../UIComponents/Toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    fName: "",
-    lName: "",
-    phone: "",
-    email: "",
+    clientDetails: {
+      fName: "",
+      lName: "",
+      phone: "",
+      email: "",
+    },
     message: "",
   });
   const [formErrors, setFormErrors] = useState({});
@@ -21,7 +23,7 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      clientDetails: { ...prev.clientDetails, [name]: value },
     }));
   }, []);
 
@@ -30,28 +32,28 @@ const Contact = () => {
     const newErrors = {};
 
     // Validate client details
-    if (!formData.fName.trim()) {
+    if (!formData.clientDetails.fName.trim()) {
       newErrors.fName = "* First name is required";
     }
-    if (!formData.lName.trim()) {
+    if (!formData.clientDetails.lName.trim()) {
       newErrors.lName = "* Last name is required";
     }
     if (!formData.message.trim()) {
       newErrors.message = "* Message is required";
     }
-    if (!formData.email.trim()) {
+    if (!formData.clientDetails.email.trim()) {
       newErrors.email = "* Email is required";
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
+      if (!emailRegex.test(formData.clientDetails.email)) {
         newErrors.email = "* Invalid email address";
       }
     }
-    if (!formData.phone.trim()) {
+    if (!formData.clientDetails.phone.trim()) {
       newErrors.phone = "* Phone number is required";
     } else {
       // Remove any non-digit characters
-      const phoneDigits = formData.phone.replace(/\D/g, "");
+      const phoneDigits = formData.clientDetails.phone.replace(/\D/g, "");
       if (phoneDigits.length !== 12) {
         newErrors.phone = "* Invalid phone number";
       }
@@ -72,6 +74,8 @@ const Contact = () => {
         await api.post("form/submit-form", {
           ...formData,
           service: "contact",
+          requestType: "CONTACT",
+          subject: "CONTACT",
         });
 
         console.log("Form submitted successfully");
@@ -212,7 +216,7 @@ const Contact = () => {
                   <input
                     type="text"
                     name="fName"
-                    value={formData.fName}
+                    value={formData.clientDetails.fName}
                     onChange={handleFormDetails}
                     className={inputClass(
                       "w-full px-4 py-2 border border-gray-400 outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300,"
@@ -231,7 +235,7 @@ const Contact = () => {
                   <input
                     type="text"
                     name="lName"
-                    value={formData.lName}
+                    value={formData.clientDetails.lName}
                     onChange={handleFormDetails}
                     className={inputClass(
                       "w-full px-4 py-2 border border-gray-400 outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
@@ -253,7 +257,7 @@ const Contact = () => {
                   <PhoneInput
                     country={"in"}
                     name="phone"
-                    value={formData.phone}
+                    value={formData.clientDetails.phone}
                     onChange={(phone) =>
                       handleFormDetails({
                         target: { name: "phone", value: phone },
@@ -279,7 +283,7 @@ const Contact = () => {
                   <input
                     type="email"
                     name="email"
-                    value={formData.email}
+                    value={formData.clientDetails.email}
                     onChange={handleFormDetails}
                     className={inputClass(
                       "w-full px-4 py-2 border border-gray-400 outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
@@ -299,7 +303,12 @@ const Contact = () => {
                     rows="5"
                     name="message"
                     value={formData.message}
-                    onChange={handleFormDetails}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        message: e.target.value,
+                      }))
+                    }
                     className={inputClass(
                       "w-full px-4 py-2 border border-gray-400 outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
                     )}

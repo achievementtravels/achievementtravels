@@ -10,7 +10,8 @@ function Footer() {
   const [destinations, setDestinations] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const phoneNumber = 1234657890;
+  const whatsNumber = 7051512130;
+  const number = 9149835168;
 
   useEffect(() => {
     if (packagesData.length > 0) {
@@ -125,7 +126,8 @@ function Footer() {
               <Link to="mailto:info@achievementtravels.com">
                 info@achievementtravels.com
               </Link>
-              <Link to={`tel:+91${phoneNumber}`}>India: +91 {phoneNumber}</Link>
+              <Link to={`tel:+91${number}`}>India: +91 {number}</Link>
+              <Link to={`tel:+91${whatsNumber}`}>India: +91 {whatsNumber}</Link>
             </ul>
           </div>
         </div>

@@ -21,6 +21,7 @@ router.post("/submit-form", async (req, res) => {
     // Save form data to MongoDB
     const newFormData = new FormData(req.body);
     await newFormData.save();
+    console.log(req.body);
 
     //send email
     const mailOptions = {
