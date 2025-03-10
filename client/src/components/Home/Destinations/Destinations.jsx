@@ -108,7 +108,7 @@ function Destinations() {
                           src={item.images[0].jpg}
                           alt={item.title}
                           loading="lazy"
-                          className={`w-full h-full rounded-[12px]`}
+                          className={`w-full h-full object-cover rounded-[12px]`}
                         />
                       </picture>
                     </CardItem>
