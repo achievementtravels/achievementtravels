@@ -93,7 +93,7 @@ function Destinations() {
                       translateZ={10}
                       rotateX={10}
                       rotateZ={-2}
-                      className="w-full aspect-[3/2] mt-4"
+                      className="w-full max-h-[180px] mt-4"
                     >
                       <picture>
                         <source
@@ -118,7 +118,7 @@ function Destinations() {
                       className="text-xl font-bold text-neutral-600 dark:text-white"
                     >
                       <span className="text-xs uppercase font-semibold text-gray-700 tracking-[1px]">
-                        {item.location}
+                        {item.location[0]}
                       </span>
                     </CardItem>
                   </CardBody>
