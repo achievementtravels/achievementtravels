@@ -10,8 +10,8 @@ function Footer() {
   const [destinations, setDestinations] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const whatsNumber = 7051512130;
-  const number = 9149835168;
+  const whatsNumber = 9149835168;
+  const number = 8899882546;
 
   useEffect(() => {
     if (packagesData.length > 0) {
@@ -123,6 +123,9 @@ function Footer() {
               />
             </Link>
             <ul className="flex flex-col space-y-2 text-sm">
+              <Link to="mailto:achievementtourandtravels@gmail.com">
+                achievementtourandtravels@gmail.com
+              </Link>
               <Link to="mailto:info@achievementtravels.com">
                 info@achievementtravels.com
               </Link>

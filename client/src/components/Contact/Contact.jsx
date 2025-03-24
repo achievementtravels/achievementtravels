@@ -161,7 +161,11 @@ const Contact = () => {
                 <i className="ri-map-pin-line"></i>Head Office
               </h3>
               <p className="text-gray-600 text-xs md:text-sm lg:text-start lg:text-xs lazyLoadLeft">
-                Brane, Nishat
+                Second Floor Hawa Complex
+                <br />
+                Brein, Nishat, Srinagar
+                <br />
+                191121
                 <br />
                 Jammu and Kashmir, India
               </p>
@@ -173,13 +177,20 @@ const Contact = () => {
               </h3>
               <p className="text-gray-600 text-xs md:text-sm lg:text-start lg:text-xs lazyLoadLeft">
                 <a
-                  href={`tel:+911234567890`}
+                  href={`tel:+918899882546`}
                   className="text-gray-600 text-xs md:text-sm lg:text-start lg:text-xs hover:underline"
                 >
-                  +91 123 4567 890
+                  +91 8899 882 546
                 </a>
                 <br />
-                Mon-Fri: 9am - 5pm
+                <a
+                  href={`tel:+919149835168`}
+                  className="text-gray-600 text-xs md:text-sm lg:text-start lg:text-xs hover:underline"
+                >
+                  +91 9149 835 168
+                </a>
+                <br />
+                Mon-Sat: 9am - 5pm
               </p>
             </div>
 
@@ -188,6 +199,13 @@ const Contact = () => {
                 <i className="ri-mail-line"></i>Email
               </h3>
               <p className="text-gray-600 text-xs md:text-sm lg:text-start lg:text-xs lazyLoadLeft">
+                <a
+                  href="mailto:achievementtourandtravels@gmail.com"
+                  className="text-gray-600 text-xs md:text-sm lg:text-start lg:text-xs hover:underline"
+                >
+                  achievementtourandtravels@gmail.com
+                </a>
+                <br />
                 <a
                   href="mailto:info@achievementtravels.com"
                   className="text-gray-600 text-xs md:text-sm lg:text-start lg:text-xs hover:underline"

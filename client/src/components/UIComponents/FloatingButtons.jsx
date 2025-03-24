@@ -1,6 +1,6 @@
 const FloatingButtons = () => {
-  const whatsNumber = +917051512130;
-  const number = +919149835168;
+  const whatsNumber = +919149835168;
+  const number = +918899882546;
   return (
     <section>
       {/* Social Links */}

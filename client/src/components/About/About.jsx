@@ -114,10 +114,10 @@ const About = () => {
               We love collaborating with talented individuals who share our
               passion for travel. Interested in a partnership or joining the
               team? <br />
-              Enquire below or email us at info@achievementtravels.com
+              Enquire below or email us at achievementtourandtravels@gmail.com
             </p>
             <a
-              href="mailto:info@achievementtravels.com"
+              href="mailto:achievementtourandtravels@gmail.com"
               className="text-center lg:text-start underline underline-offset-8 text-indigo-500 text-lg mt-5 transition-all duration-300 hover:no-underline hover:scale-105 lazyLoadRight"
             >
               Join Us at AchievementTravels
