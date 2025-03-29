@@ -24,6 +24,8 @@ const PopularPackages = () => {
   }
 
   useEffect(() => {
+    if (!packages.length) return; // only run after packages are loaded
+
     const carouselDom = carouselRef.current;
     const sliderDom = sliderRef.current;
     const thumbnailBorderDom = thumbnailRef.current;
@@ -81,7 +83,7 @@ const PopularPackages = () => {
       clearTimeout(runTimeOut);
       clearTimeout(runNextAuto);
     };
-  }, []);
+  }, [packages]);
 
   //useeffect to get Packages data from db
   useEffect(() => {

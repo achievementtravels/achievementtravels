@@ -360,10 +360,13 @@ const Contact = () => {
           <h2 className="text-2xl text-gray-800 mb-6">Our Location</h2>
           <div className="aspect-w-16 aspect-h-9">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1651.7451092175595!2d74.87985133548462!3d34.1081977009004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e1860f356fc21b%3A0x8da717235e544d3e!2sJamia%20Masjid%20Brein%20Bazaar!5e0!3m2!1sen!2sin!4v1739432943869!5m2!1sen!2sin"
-              className="w-full h-96 border-0"
-              allowFullScreen
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d206.4709895497192!2d74.87907514905788!3d34.10702954024426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e1874a0318ea01%3A0x6e35c43033055a02!2sAchievement%20Tour%20And%20Travels!5e0!3m2!1sen!2sin!4v1743239515057!5m2!1sen!2sin"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>

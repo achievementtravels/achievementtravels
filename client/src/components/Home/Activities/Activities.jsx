@@ -24,6 +24,8 @@ const Activities = () => {
   }
 
   useEffect(() => {
+    if (!activities.length) return; // only run after activities are loaded
+
     const carouselDom = carouselRef.current;
     const sliderDom = sliderRef.current;
     const thumbnailBorderDom = thumbnailRef.current;
@@ -81,7 +83,7 @@ const Activities = () => {
       clearTimeout(runTimeOut);
       clearTimeout(runNextAuto);
     };
-  }, []);
+  }, [activities]);
 
   //useeffect to get Activities data from db
   useEffect(() => {

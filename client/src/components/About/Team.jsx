@@ -75,13 +75,16 @@ const Team = () => {
                 </div>
 
                 <div className="row-start-1 lg:col-start-2 h-[250px] w-[200px] sm:h-[300px] sm:w-[250px] md:h-[400px] md:w-[300px] lg:h-[500px] lg:w-full  mb-5 sm:mb-10 place-self-center relative overflow-hidden rounded-none md:rounded-lg shadow transition hover:shadow-lg">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="px-1 w-auto h-full z-0 object-cover transition-transform duration-300 ease-in-out hover:scale-125"
-                    loading="lazy"
-                  />
-
+                  <picture>
+                    <source srcSet={item.images[0].avif} type="image/avif" />
+                    <source srcSet={item.images[0].webp} type="image/webp" />
+                    <img
+                      src={item.images[0].jpg}
+                      alt={item.title}
+                      loading="lazy"
+                      className="px-1 w-auto h-full z-0 object-cover transition-transform duration-300 ease-in-out hover:scale-125"
+                    />
+                  </picture>{" "}
                   <div
                     className={`absolute w-full  text-white p-3 sm:p-4 px-5 lg:px-3 xl:px-10 bottom-0 left-0 bg-gradient-to-t from-gray-600 via-black/80  pt-4 sm:pt-6 md:pt-10`}
                   >

@@ -21,13 +21,12 @@ router.post("/submit-form", async (req, res) => {
     // Save form data to MongoDB
     const newFormData = new FormData(req.body);
     await newFormData.save();
-    console.log(req.body);
 
     //send email
     const mailOptions = {
       from: process.env.ZOHO_EMAIL,
       // to: process.env.ZOHO_RECEIVE_EMAIL,
-      to: "suhamhamid321@gmail.com",
+      to: "achievementtourandtravels@gmail.com",
       subject: "New Form Submission",
       // text: `You have a new form submission:\n\n${JSON.stringify(req.body, null, 2)}`,
       html: htmlContent,
