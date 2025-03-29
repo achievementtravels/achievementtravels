@@ -94,15 +94,15 @@ const About = () => {
           id="workwithus"
           className="flex flex-col lg:grid lg:grid-cols-2 h-screen py-auto my-auto lg:mx-10 lg:gap-10"
         >
-          <div className="h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] lg:w-full mb-10 w-full relative overflow-hidden rounded-none md:rounded-lg flex items-center justify-center lazyLoadLeft">
+          <div className="h-[600px] mb-10 w-full relative overflow-hidden rounded-none md:rounded-lg shadow transition hover:shadow-lg lazyLoadLeft">
             <picture>
-              <source srcSet="/assets/hero_bg.avif" type="image/avif" />
-              <source srcSet="/assets/hero_bg.webp" type="image/webp" />
+              <source srcSet="/assets/work.avif" type="image/avif" />
+              <source srcSet="/assets/work.webp" type="image/webp" />
               <img
-                src="/assets/hero_bg.jpg"
-                alt="hero background"
+                src="/assets/work.jpg"
+                alt="work with us background"
                 loading="lazy"
-                className="absolute h-full w-full object-cover object-[70%]"
+                className="absolute h-full w-full object-center object-cover"
               />
             </picture>
           </div>
